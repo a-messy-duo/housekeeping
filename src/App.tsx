@@ -3,9 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import './global.scss';
+import MainContainer from './features/main/Container';
 
 const App: FunctionComponent = () => {
-  return <div>hi</div>;
+  return <MainContainer />;
 };
 
 const router = createHashRouter([
