@@ -1,15 +1,8 @@
-import { Category } from '~/features/shared/model';
+import { Our, StatementItem } from '~/features/shared/model';
 
-export type StatementItem = {
-  date: Date;
-  category: Category;
-  statement: string;
-  memo: string;
-  cost: number;
-};
 export type SummaryItem = Pick<StatementItem, 'category'> & {
-  yulim: number;
-  chul: number;
+  [Our.yulim]: number;
+  [Our.chul]: number;
   sum: number;
   count: number;
 };

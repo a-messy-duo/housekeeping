@@ -23,3 +23,17 @@ export type Category =
   | '통신비'
   | '화장품'
   | '여행';
+
+export enum Our {
+  yulim = 'yulim',
+  chul = 'chul',
+}
+
+export type StatementItem = {
+  date: Date;
+  category: Category;
+  statement: string;
+  memo: string;
+  cost: number;
+  owner: Our;
+};
