@@ -19,9 +19,6 @@ export const dummyStatementList: TableItem[] = [
     cost: 45000,
     owner: Our.yulim,
   },
-];
-
-export const dummyStatementList2: TableItem[] = [
   {
     date: new Date('2023-02-02'),
     category: '외식',

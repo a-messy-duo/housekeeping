@@ -6,8 +6,30 @@
 	flex-direction: column;
 }
 
+.table {
+	padding-right: 4px;
+}
+
+.table-row {
+	height: 70px;
+}
+
 .table-header-item, .table-row-item {
 	padding: 0 5px;
+	width: 100px;
+	border: 1px solid #e5e5e5;
+	border-color: rgb(0 0 0 / 15%);
+	border-width: 0 1px 1px 0;
+}
+
+.memo {
 	width: 150px;
-	border: 1px black solid;
+}
+
+.yulim {
+	background-color: #d9d2e9;
+}
+
+.chul {
+	background-color: #cfe2f3;
 }
