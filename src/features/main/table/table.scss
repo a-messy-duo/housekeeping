@@ -6,8 +6,12 @@
 	flex-direction: column;
 }
 
+.table-row {
+	height: 70px;
+}
+
 .table-header-item, .table-row-item {
 	padding: 0 5px;
-	width: 150px;
+	width: 100px;
 	border: 1px black solid;
 }

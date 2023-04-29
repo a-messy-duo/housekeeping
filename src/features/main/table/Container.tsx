@@ -6,10 +6,12 @@ import TableHeader from './content/Header';
 import { TableItem } from './model';
 import TableRow from './content/Row';
 
+import { Our } from '~/features/shared/model';
+
 export type TableContainerProps = {
   headers: string[];
   list: TableItem[];
-  hideDate?: boolean;
+  containerOwner?: Our;
 };
 
 const TableContainer: FunctionComponent<TableContainerProps> = (props) => {

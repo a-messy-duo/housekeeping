@@ -2,16 +2,19 @@ import { FunctionComponent } from 'react';
 
 import { TableContainerProps } from '../Container';
 
-type TableHeaderProps = Pick<TableContainerProps, 'headers' | 'hideDate'>;
+import { Our } from '~/features/shared/model';
+
+type TableHeaderProps = Pick<TableContainerProps, 'headers' | 'containerOwner'>;
 
 const TableHeader: FunctionComponent<TableHeaderProps> = ({
   headers,
-  hideDate,
+  containerOwner,
 }) => {
   return (
     <div className="table-header">
       {headers.map((header, index) => {
-        if (index === 0 && hideDate) return null;
+        if (containerOwner && index === 0 && containerOwner !== Our.yulim)
+          return null;
         return (
           <div className="table-header-item" key={header}>
             {header}
