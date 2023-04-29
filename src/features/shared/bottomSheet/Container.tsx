@@ -12,7 +12,7 @@ const BottomSheetContainer: FunctionComponent = () => {
   const [defaultUser, setDefaultUser] = useState<boolean>(true);
 
   useLayoutEffect(() => {
-    const localStorageUser = localStorage.getItem('housekeeping-checkeduser');
+    const localStorageUser = localStorage.getItem('checkeduser');
     if (localStorageUser === 'chul') {
       setDefaultUser(false);
       return;
@@ -41,7 +41,7 @@ const BottomSheetContainer: FunctionComponent = () => {
       setDefaultUser(true);
     }
 
-    localStorage.setItem('housekeeping-checkeduser', value);
+    localStorage.setItem('checkeduser', value);
   };
 
   return (
