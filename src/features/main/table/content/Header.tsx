@@ -19,7 +19,7 @@ const TableHeader: FunctionComponent<TableHeaderProps> = ({
       {headers.map((header) => {
         return (
           <div
-            className={classNames('table-header-item', {
+            className={classNames('table-header-item up-line', {
               memo: header === '메모',
               yulim: containerOwner === Our.yulim,
               chul: containerOwner === Our.chul,
