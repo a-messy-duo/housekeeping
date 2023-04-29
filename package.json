@@ -1,0 +1,14 @@
+{
+  "name": "housekeeping",
+  "repository": "https://github.com/a-messy-duo/housekeeping.git",
+  "author": "messy <1ilsang@naver.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "echo 1",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}
