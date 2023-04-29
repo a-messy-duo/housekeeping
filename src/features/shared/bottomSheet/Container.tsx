@@ -1,22 +1,47 @@
-import { FunctionComponent, useState } from 'react';
-import { KeyboardEvent, ChangeEvent } from 'react';
+import { FunctionComponent, useLayoutEffect, useState } from 'react';
+import {
+  KeyboardEventHandler,
+  ChangeEventHandler,
+  MouseEventHandler,
+} from 'react';
 
 import './bottomSheet.scss';
 
 const BottomSheetContainer: FunctionComponent = () => {
   const [cost, setCost] = useState<string>('0');
+  const [defaultUser, setDefaultUser] = useState<boolean>(true);
 
-  const handleCostChange = (e: ChangeEvent<HTMLInputElement>) => {
+  useLayoutEffect(() => {
+    const localStorageUser = localStorage.getItem('housekeeping-checkeduser');
+    if (localStorageUser === 'chul') {
+      setDefaultUser(false);
+      return;
+    }
+  }, []);
+
+  const handleCostChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const value = e.target.value
       .replace(/[^0-9.]/g, '')
       .replace(/(\..*)\./g, '$1');
     setCost(value);
   };
 
-  const handleCostKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
-    let value = Number(e.currentTarget.value.replaceAll(',', ''));
+  const handleCostKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    const value = Number(e.currentTarget.value.replaceAll(',', ''));
     const formatValue = value.toLocaleString('ko-KR');
     setCost(formatValue);
+  };
+
+  const handleInputClick: MouseEventHandler<HTMLInputElement> = (e) => {
+    const value = e.currentTarget.value;
+
+    if (value === 'chul') {
+      setDefaultUser(false);
+    } else {
+      setDefaultUser(true);
+    }
+
+    localStorage.setItem('housekeeping-checkeduser', value);
   };
 
   return (
@@ -26,13 +51,27 @@ const BottomSheetContainer: FunctionComponent = () => {
           <div className="item-title">이름</div>
           <fieldset className="item-input item-radio">
             <div className="item-radio-box">
-              <input type="radio" id="nameY" name="name" value="Y" checked />
-              <label htmlFor="nameY" className="add-margin-right">
-                Y
+              <input
+                type="radio"
+                id="nameYulim"
+                name="name"
+                value="yulim"
+                checked={defaultUser}
+                onClick={handleInputClick}
+              />
+              <label htmlFor="nameYulim" className="add-margin-right">
+                yulim
               </label>
 
-              <input type="radio" id="nameC" name="name" value="C" />
-              <label htmlFor="nameC">C</label>
+              <input
+                type="radio"
+                id="nameChul"
+                name="name"
+                value="chul"
+                checked={!defaultUser}
+                onClick={handleInputClick}
+              />
+              <label htmlFor="nameChul">chul</label>
             </div>
           </fieldset>
         </div>
