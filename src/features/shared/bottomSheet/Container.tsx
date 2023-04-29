@@ -5,13 +5,13 @@ import './bottomSheet.scss';
 const BottomSheetContainer: FunctionComponent = () => {
   return (
     <div className="container">
-      <div className="itemBox">
+      <div className="item-box">
         <div className="item">
-          <div className="itemTitle">이름</div>
-          <fieldset className="itemInput itemRadio">
-            <div className="itemRadioBox">
+          <div className="item-title">이름</div>
+          <fieldset className="item-input item-radio">
+            <div className="item-radio-box">
               <input type="radio" id="nameY" name="name" value="Y" checked />
-              <label htmlFor="nameY" className="addMarginRight">
+              <label htmlFor="nameY" className="add-margin-right">
                 Y
               </label>
 
@@ -21,27 +21,27 @@ const BottomSheetContainer: FunctionComponent = () => {
           </fieldset>
         </div>
         <div className="item">
-          <div className="itemTitle">날짜</div>
-          <input className="itemInput" type="date" />
+          <div className="item-title">날짜</div>
+          <input className="item-input" type="date" />
         </div>
         <div className="item">
-          <div className="itemTitle">구분</div>
-          <input className="itemInput" type="text" />
+          <div className="item-title">구분</div>
+          <input className="item-input" type="text" />
         </div>
         <div className="item">
-          <div className="itemTitle">내역</div>
-          <input className="itemInput" type="text" />
+          <div className="item-title">내역</div>
+          <input className="item-input" type="text" />
         </div>
         <div className="item">
-          <div className="itemTitle">금액</div>
-          <input className="itemInput" type="number" />
+          <div className="item-title">금액</div>
+          <input className="item-input" type="number" />
         </div>
         <div className="item">
-          <div className="itemTitle">메모</div>
-          <input className="itemInput" type="text" />
+          <div className="item-title">메모</div>
+          <input className="item-input" type="text" />
         </div>
       </div>
-      <button className="addBtn">추가</button>
+      <button className="add-btn">추가</button>
     </div>
   );
 };
