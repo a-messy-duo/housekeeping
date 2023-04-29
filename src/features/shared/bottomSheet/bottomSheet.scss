@@ -1,0 +1,45 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 14%;
+  bottom: 0;
+  padding: 1%;
+  background-color: lightpink;
+  border-radius: 2% 2% 0 0;
+}
+
+.itemBox {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  width: 40%;
+  margin: 3px;
+  display: flex;
+}
+
+.itemTitle {
+  width: 15%;
+}
+
+.itemInput {
+  width: 70%;
+}
+
+.itemInput.itemRadio {
+  border: none;
+
+  .addMarginRight {
+    margin-right: 10px;
+  }
+}
+
+.addBtn {
+  position: absolute;
+  top:50%;
+  transform:translateY(-50%);
+  right: 10%;
+}
