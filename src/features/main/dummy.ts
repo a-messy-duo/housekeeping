@@ -1,3 +1,5 @@
+import { Our } from '../shared/model';
+
 import { TableItem } from './table/model';
 
 export const dummyStatementList: TableItem[] = [
@@ -7,6 +9,7 @@ export const dummyStatementList: TableItem[] = [
     statement: '바른치킨',
     memo: '여기 존맛이었음',
     cost: 20000,
+    owner: Our.yulim,
   },
   {
     date: new Date('2023-02-02'),
@@ -14,6 +17,7 @@ export const dummyStatementList: TableItem[] = [
     statement: '피자헛',
     memo: '여기 맛이 진짜 헛이었음',
     cost: 45000,
+    owner: Our.yulim,
   },
 ];
 
@@ -24,6 +28,7 @@ export const dummyStatementList2: TableItem[] = [
     statement: '마라탕',
     memo: '말아먹지마세요',
     cost: 10000,
+    owner: Our.chul,
   },
   {
     date: new Date('2023-02-03'),
@@ -31,6 +36,7 @@ export const dummyStatementList2: TableItem[] = [
     statement: '쌀국수',
     memo: '',
     cost: 4500,
+    owner: Our.chul,
   },
 ];
 

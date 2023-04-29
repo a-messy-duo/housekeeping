@@ -1,7 +1,9 @@
 import { FunctionComponent } from 'react';
 
 import { TableContainerProps } from '../Container';
-import { StatementItem, SummaryItem, TableItem } from '../model';
+import { SummaryItem, TableItem } from '../model';
+
+import { StatementItem } from '~/features/shared/model';
 
 type CommonProps = Pick<TableContainerProps, 'hideDate'>;
 type TableRowProps = CommonProps & TableItem;

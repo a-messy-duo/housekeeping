@@ -1,5 +1,7 @@
 import { FunctionComponent } from 'react';
 
+import './main.scss';
+
 import BottomSheetContainer from '../shared/bottomSheet/Container';
 
 import HeaderContainer from './header/Container';
@@ -15,16 +17,21 @@ const MainContainer: FunctionComponent = () => {
   return (
     <div>
       <HeaderContainer />
-      <TableContainer
-        headers={defaultStatementHeaders}
-        list={dummyStatementList}
-      />
-      <TableContainer
-        headers={defaultStatementHeaders}
-        list={dummyStatementList2}
-        hideDate
-      />
-      <TableContainer headers={defaultSummaryHeaders} list={dummySummaryList} />
+      <div className="content">
+        <TableContainer
+          headers={defaultStatementHeaders}
+          list={dummyStatementList}
+        />
+        <TableContainer
+          headers={defaultStatementHeaders}
+          list={dummyStatementList2}
+          hideDate
+        />
+        <TableContainer
+          headers={defaultSummaryHeaders}
+          list={dummySummaryList}
+        />
+      </div>
       <BottomSheetContainer />
     </div>
   );
