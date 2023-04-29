@@ -1,8 +1,24 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
+import { KeyboardEvent, ChangeEvent } from 'react';
 
 import './bottomSheet.scss';
 
 const BottomSheetContainer: FunctionComponent = () => {
+  const [cost, setCost] = useState<string>('0');
+
+  const handleCostChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+      .replace(/[^0-9.]/g, '')
+      .replace(/(\..*)\./g, '$1');
+    setCost(value);
+  };
+
+  const handleCostKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
+    let value = Number(e.currentTarget.value.replaceAll(',', ''));
+    const formatValue = value.toLocaleString('ko-KR');
+    setCost(formatValue);
+  };
+
   return (
     <div className="container">
       <div className="item-box">
@@ -34,7 +50,13 @@ const BottomSheetContainer: FunctionComponent = () => {
         </div>
         <div className="item">
           <div className="item-title">금액</div>
-          <input className="item-input" type="number" />
+          <input
+            className="item-input"
+            type="text"
+            value={cost}
+            onChange={handleCostChange}
+            onKeyUp={handleCostKeyUp}
+          />
         </div>
         <div className="item">
           <div className="item-title">메모</div>
