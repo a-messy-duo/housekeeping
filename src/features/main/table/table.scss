@@ -1,0 +1,17 @@
+.table, .table-header, .table-row-container, .table-row {
+	display: flex;
+}
+
+.table, .table-row-container {
+	flex-direction: column;
+}
+
+.table {
+	padding: 15px;
+}
+
+.table-header-item, .table-row-item {
+	padding: 0 5px;
+	width: 150px;
+	border: 1px black solid;
+}
