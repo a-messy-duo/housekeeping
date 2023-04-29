@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import classNames from 'classnames';
 
 import { CommonProps } from './Row';
 
@@ -6,36 +7,27 @@ import { Our, StatementItem } from '~/features/shared/model';
 
 export type StatementRowProps = CommonProps & StatementItem;
 
-const StatementRowSkeleton: FunctionComponent<StatementRowProps> = ({
+const StatementRow: FunctionComponent<StatementRowProps> = ({
+  owner,
   containerOwner,
+  category,
+  statement,
+  memo,
+  cost,
 }) => {
-  return (
-    <div className="table-row">
-      {containerOwner === Our.yulim && <div className="table-row-item" />}
-      <div className="table-row-item" />
-      <div className="table-row-item" />
-      <div className="table-row-item" />
-      <div className="table-row-item" />
-    </div>
-  );
-};
-
-const StatementRow: FunctionComponent<StatementRowProps> = (props) => {
-  const { owner, containerOwner, date, category, statement, memo, cost } =
-    props;
-  if (containerOwner !== owner) {
-    return <StatementRowSkeleton {...props} />;
-  }
+  const isMine = containerOwner === owner;
 
   return (
-    <div className="table-row">
-      {owner === Our.yulim && (
-        <div className="table-row-item">{date.toString()}</div>
-      )}
-      <div className="table-row-item">{category}</div>
-      <div className="table-row-item">{statement}</div>
-      <div className="table-row-item">{memo}</div>
-      <div className="table-row-item">{cost}</div>
+    <div
+      className={classNames('table-row', {
+        yulim: containerOwner === Our.yulim,
+        chul: containerOwner === Our.chul,
+      })}
+    >
+      <div className="table-row-item">{isMine ? category : ''}</div>
+      <div className="table-row-item">{isMine ? statement : ''}</div>
+      <div className="table-row-item memo">{isMine ? memo : ''}</div>
+      <div className="table-row-item">{isMine ? cost : ''}</div>
     </div>
   );
 };

@@ -16,16 +16,24 @@ const MainContainer: FunctionComponent = () => {
       <HeaderContainer />
       <div className="content">
         <TableContainer
+          type="date"
+          headers={['날짜']}
+          list={dummyStatementList}
+        />
+        <TableContainer
+          type="statement"
           headers={defaultStatementHeaders}
           list={dummyStatementList}
           containerOwner={Our.yulim}
         />
         <TableContainer
+          type="statement"
           headers={defaultStatementHeaders}
           list={dummyStatementList}
           containerOwner={Our.chul}
         />
         <TableContainer
+          type="summary"
           headers={defaultSummaryHeaders}
           list={dummySummaryList}
         />
