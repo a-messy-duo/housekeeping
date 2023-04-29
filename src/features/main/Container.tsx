@@ -1,5 +1,7 @@
 import { FunctionComponent } from 'react';
 
+import BottomSheetContainer from '../shared/bottomSheet/Container';
+
 import HeaderContainer from './header/Container';
 import TableContainer from './table/Container';
 import { defaultStatementHeaders, defaultSummaryHeaders } from './constants';
@@ -23,6 +25,7 @@ const MainContainer: FunctionComponent = () => {
         hideDate
       />
       <TableContainer headers={defaultSummaryHeaders} list={dummySummaryList} />
+      <BottomSheetContainer />
     </div>
   );
 };
