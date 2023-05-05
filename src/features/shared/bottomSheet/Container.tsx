@@ -1,8 +1,16 @@
 import { FunctionComponent } from 'react';
 
 import './bottomSheet.scss';
+import useBottomSheet from './hooks/useBottomSheet';
 
 const BottomSheetContainer: FunctionComponent = () => {
+  const {
+    handleDefaultUserChange,
+    handleCostChange,
+    formattedCost,
+    defaultUser,
+  } = useBottomSheet();
+
   return (
     <div className="container">
       <div className="item-box">
@@ -10,13 +18,27 @@ const BottomSheetContainer: FunctionComponent = () => {
           <div className="item-title">이름</div>
           <fieldset className="item-input item-radio">
             <div className="item-radio-box">
-              <input type="radio" id="nameY" name="name" value="Y" checked />
-              <label htmlFor="nameY" className="add-margin-right">
-                Y
+              <input
+                type="radio"
+                id="nameYulim"
+                name="name"
+                value="yulim"
+                checked={defaultUser}
+                onChange={handleDefaultUserChange}
+              />
+              <label htmlFor="nameYulim" className="add-margin-right">
+                yulim
               </label>
 
-              <input type="radio" id="nameC" name="name" value="C" />
-              <label htmlFor="nameC">C</label>
+              <input
+                type="radio"
+                id="nameChul"
+                name="name"
+                value="chul"
+                checked={!defaultUser}
+                onChange={handleDefaultUserChange}
+              />
+              <label htmlFor="nameChul">chul</label>
             </div>
           </fieldset>
         </div>
@@ -34,7 +56,12 @@ const BottomSheetContainer: FunctionComponent = () => {
         </div>
         <div className="item">
           <div className="item-title">금액</div>
-          <input className="item-input" type="number" />
+          <input
+            className="item-input"
+            type="text"
+            value={formattedCost}
+            onChange={handleCostChange}
+          />
         </div>
         <div className="item">
           <div className="item-title">메모</div>
