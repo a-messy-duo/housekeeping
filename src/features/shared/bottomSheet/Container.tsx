@@ -1,44 +1,15 @@
-import { FunctionComponent, useLayoutEffect, useState } from 'react';
-import { KeyboardEventHandler, ChangeEventHandler } from 'react';
+import { FunctionComponent } from 'react';
 
 import './bottomSheet.scss';
+import useBottomSheet from './hooks/useBottomSheet';
 
 const BottomSheetContainer: FunctionComponent = () => {
-  const [cost, setCost] = useState<string>('0');
-  const [defaultUser, setDefaultUser] = useState<boolean>(true);
-
-  useLayoutEffect(() => {
-    const localStorageUser = localStorage.getItem('checkeduser');
-    if (localStorageUser === 'chul') {
-      setDefaultUser(false);
-      return;
-    }
-  }, []);
-
-  const handleCostChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const value = e.target.value
-      .replace(/[^0-9.]/g, '')
-      .replace(/(\..*)\./g, '$1');
-    setCost(value);
-  };
-
-  const handleCostKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
-    const value = Number(e.currentTarget.value.replaceAll(',', ''));
-    const formatValue = value.toLocaleString('ko-KR');
-    setCost(formatValue);
-  };
-
-  const handleRadioInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const value = e.currentTarget.value;
-
-    if (value === 'chul') {
-      setDefaultUser(false);
-    } else {
-      setDefaultUser(true);
-    }
-
-    localStorage.setItem('checkeduser', value);
-  };
+  const {
+    handleDefaultUserChange,
+    handleCostChange,
+    formattedCost,
+    defaultUser,
+  } = useBottomSheet();
 
   return (
     <div className="container">
@@ -53,7 +24,7 @@ const BottomSheetContainer: FunctionComponent = () => {
                 name="name"
                 value="yulim"
                 checked={defaultUser}
-                onChange={handleRadioInputChange}
+                onChange={handleDefaultUserChange}
               />
               <label htmlFor="nameYulim" className="add-margin-right">
                 yulim
@@ -65,7 +36,7 @@ const BottomSheetContainer: FunctionComponent = () => {
                 name="name"
                 value="chul"
                 checked={!defaultUser}
-                onChange={handleRadioInputChange}
+                onChange={handleDefaultUserChange}
               />
               <label htmlFor="nameChul">chul</label>
             </div>
@@ -88,9 +59,8 @@ const BottomSheetContainer: FunctionComponent = () => {
           <input
             className="item-input"
             type="text"
-            value={cost}
+            value={formattedCost}
             onChange={handleCostChange}
-            onKeyUp={handleCostKeyUp}
           />
         </div>
         <div className="item">
