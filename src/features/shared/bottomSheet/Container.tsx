@@ -32,7 +32,7 @@ const BottomSheetContainer: FunctionComponent = () => {
     setCost(formatValue);
   };
 
-  const handleInputClick: MouseEventHandler<HTMLInputElement> = (e) => {
+  const handleRadioInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const value = e.currentTarget.value;
 
     if (value === 'chul') {
@@ -57,7 +57,7 @@ const BottomSheetContainer: FunctionComponent = () => {
                 name="name"
                 value="yulim"
                 checked={defaultUser}
-                onClick={handleInputClick}
+                onChange={handleRadioInputChange}
               />
               <label htmlFor="nameYulim" className="add-margin-right">
                 yulim
@@ -69,7 +69,7 @@ const BottomSheetContainer: FunctionComponent = () => {
                 name="name"
                 value="chul"
                 checked={!defaultUser}
-                onClick={handleInputClick}
+                onChange={handleRadioInputChange}
               />
               <label htmlFor="nameChul">chul</label>
             </div>
