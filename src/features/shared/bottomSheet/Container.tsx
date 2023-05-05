@@ -1,9 +1,5 @@
 import { FunctionComponent, useLayoutEffect, useState } from 'react';
-import {
-  KeyboardEventHandler,
-  ChangeEventHandler,
-  MouseEventHandler,
-} from 'react';
+import { KeyboardEventHandler, ChangeEventHandler } from 'react';
 
 import './bottomSheet.scss';
 
