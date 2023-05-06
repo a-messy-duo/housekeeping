@@ -1,15 +1,23 @@
+import classNames from 'classnames';
 import { FunctionComponent } from 'react';
 
 import './bottomSheet.scss';
 import useBottomSheet from './hooks/useBottomSheet';
+import useCategory from './hooks/useCategory';
+import useCost from './hooks/useCost';
 
 const BottomSheetContainer: FunctionComponent = () => {
+  const { handleDefaultUserChange, defaultUser } = useBottomSheet();
+  const { handleCostChange, cost, formattedCost } = useCost();
   const {
-    handleDefaultUserChange,
-    handleCostChange,
-    formattedCost,
-    defaultUser,
-  } = useBottomSheet();
+    handleCategoryItemClick,
+    handleCategoryFocus,
+    handleCategoryBlur,
+    handleCategoryChange,
+    categoryView,
+    seletedCategory,
+    categoryFilterList,
+  } = useCategory();
 
   return (
     <div className="container">
@@ -42,18 +50,40 @@ const BottomSheetContainer: FunctionComponent = () => {
             </div>
           </fieldset>
         </div>
+
         <div className="item">
           <div className="item-title">날짜</div>
           <input className="item-input" type="date" />
         </div>
+
         <div className="item">
           <div className="item-title">구분</div>
-          <input className="item-input" type="text" />
+          <div
+            className={classNames('category-box', {
+              'category-box-hide': !categoryView,
+            })}
+          >
+            {categoryFilterList.map((category) => (
+              <div key={category} onClick={handleCategoryItemClick}>
+                {category}
+              </div>
+            ))}
+          </div>
+          <input
+            className="item-input"
+            type="text"
+            value={seletedCategory}
+            onFocus={handleCategoryFocus}
+            onBlur={handleCategoryBlur}
+            onChange={handleCategoryChange}
+          />
         </div>
+
         <div className="item">
           <div className="item-title">내역</div>
           <input className="item-input" type="text" />
         </div>
+
         <div className="item">
           <div className="item-title">금액</div>
           <input
@@ -63,6 +93,7 @@ const BottomSheetContainer: FunctionComponent = () => {
             onChange={handleCostChange}
           />
         </div>
+
         <div className="item">
           <div className="item-title">메모</div>
           <input className="item-input" type="text" />
