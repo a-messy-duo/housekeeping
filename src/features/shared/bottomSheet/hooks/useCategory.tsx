@@ -1,18 +1,30 @@
-import { ChangeEventHandler, MouseEventHandler, useState } from 'react';
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Category } from '../../model';
 import { categoryList } from '../../constants';
 
 const useCategory = () => {
   const [categoryView, setCategoryView] = useState<boolean>(false);
-  const [seletedCategory, setSeletedCategory] = useState<string>('');
-
+  const [currentCategoryText, setCurrentCategoryText] = useState<string>('');
   const [categoryFilterList, setCategoryFilterList] =
     useState<Category[]>(categoryList);
+  const [selectedCategory, setSelectedCategory] = useState<Category>('가구');
+
+  useEffect(() => {
+    if (currentCategoryText === '') return;
+    if (categoryList.includes(currentCategoryText as Category)) {
+      setSelectedCategory(currentCategoryText as Category);
+    }
+  }, [currentCategoryText]);
 
   const handleCategoryItemClick: MouseEventHandler<HTMLInputElement> = (e) => {
     const selectedText = e.currentTarget.innerText;
-    setSeletedCategory(selectedText);
+    setCurrentCategoryText(selectedText);
     setCategoryView(false);
   };
 
@@ -29,7 +41,7 @@ const useCategory = () => {
     setCategoryFilterList(
       categoryList.filter((category) => category.includes(currentText)),
     );
-    setSeletedCategory(e.currentTarget.value);
+    setCurrentCategoryText(currentText);
   };
 
   return {
@@ -38,8 +50,9 @@ const useCategory = () => {
     handleCategoryBlur,
     handleCategoryChange,
     categoryView,
-    seletedCategory,
+    currentCategoryText,
     categoryFilterList,
+    selectedCategory,
   };
 };
 
