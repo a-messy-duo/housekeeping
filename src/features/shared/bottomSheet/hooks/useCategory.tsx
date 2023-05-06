@@ -29,7 +29,7 @@ const useCategory = () => {
     setCategoryFilterList(
       categoryList.filter((category) => category.includes(currentText)),
     );
-    setSeletedCategory(e.currentTarget.value);
+    setSeletedCategory(currentText);
   };
 
   return {
