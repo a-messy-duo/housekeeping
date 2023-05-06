@@ -1,13 +1,25 @@
 import classNames from 'classnames';
 import { FunctionComponent } from 'react';
 
+import { Our } from '../model';
+
 import './bottomSheet.scss';
+import useAddItem from './hooks/useAddItem';
 import useBottomSheet from './hooks/useBottomSheet';
 import useCategory from './hooks/useCategory';
 import useCost from './hooks/useCost';
 
 const BottomSheetContainer: FunctionComponent = () => {
-  const { handleDefaultUserChange, defaultUser } = useBottomSheet();
+  const {
+    handleDefaultUserChange,
+    handleDateChange,
+    handleStatementChange,
+    handleMemoChange,
+    defaultUser,
+    selectedDate,
+    statementText,
+    memoText,
+  } = useBottomSheet();
   const { handleCostChange, cost, formattedCost } = useCost();
   const {
     handleCategoryItemClick,
@@ -15,9 +27,11 @@ const BottomSheetContainer: FunctionComponent = () => {
     handleCategoryBlur,
     handleCategoryChange,
     categoryView,
-    seletedCategory,
+    currentCategoryText,
     categoryFilterList,
+    selectedCategory,
   } = useCategory();
+  const { handleAddButtonClick } = useAddItem();
 
   return (
     <div className="container">
@@ -53,7 +67,12 @@ const BottomSheetContainer: FunctionComponent = () => {
 
         <div className="item">
           <div className="item-title">날짜</div>
-          <input className="item-input" type="date" />
+          <input
+            className="item-input"
+            type="date"
+            value={selectedDate}
+            onChange={handleDateChange}
+          />
         </div>
 
         <div className="item">
@@ -72,7 +91,7 @@ const BottomSheetContainer: FunctionComponent = () => {
           <input
             className="item-input"
             type="text"
-            value={seletedCategory}
+            value={currentCategoryText}
             onFocus={handleCategoryFocus}
             onBlur={handleCategoryBlur}
             onChange={handleCategoryChange}
@@ -81,7 +100,12 @@ const BottomSheetContainer: FunctionComponent = () => {
 
         <div className="item">
           <div className="item-title">내역</div>
-          <input className="item-input" type="text" />
+          <input
+            className="item-input"
+            type="text"
+            value={statementText}
+            onChange={handleStatementChange}
+          />
         </div>
 
         <div className="item">
@@ -96,10 +120,30 @@ const BottomSheetContainer: FunctionComponent = () => {
 
         <div className="item">
           <div className="item-title">메모</div>
-          <input className="item-input" type="text" />
+          <input
+            className="item-input"
+            type="text"
+            value={memoText}
+            onChange={handleMemoChange}
+          />
         </div>
       </div>
-      <button className="add-btn">추가</button>
+
+      <button
+        className="add-btn"
+        onClick={() =>
+          handleAddButtonClick({
+            owner: defaultUser ? Our.yulim : Our.chul,
+            date: new Date(selectedDate),
+            category: selectedCategory,
+            statement: statementText,
+            cost: cost,
+            memo: memoText,
+          })
+        }
+      >
+        추가
+      </button>
     </div>
   );
 };

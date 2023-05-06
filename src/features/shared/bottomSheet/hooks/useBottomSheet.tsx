@@ -22,9 +22,30 @@ const useBottomSheet = () => {
     localStorage.setItem('checkeduser', value);
   };
 
+  const [selectedDate, setSelectedDate] = useState('');
+  const handleDateChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSelectedDate(e.currentTarget.value);
+  };
+
+  const [statementText, setStatementText] = useState('');
+  const handleStatementChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setStatementText(e.currentTarget.value);
+  };
+
+  const [memoText, setMemoText] = useState('');
+  const handleMemoChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setMemoText(e.currentTarget.value);
+  };
+
   return {
     handleDefaultUserChange,
+    handleDateChange,
+    handleStatementChange,
+    handleMemoChange,
     defaultUser,
+    selectedDate,
+    statementText,
+    memoText,
   };
 };
 
