@@ -21,11 +21,7 @@ const useCategory = () => {
   };
 
   const handleCategoryBlur = () => {
-    const timer = setTimeout(() => {
-      setCategoryView(false);
-    }, 200);
-
-    // clearTimeout(timer);
+    setCategoryView(false);
   };
 
   const handleCategoryChange: ChangeEventHandler<HTMLInputElement> = (e) => {

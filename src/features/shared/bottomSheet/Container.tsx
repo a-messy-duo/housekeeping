@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FunctionComponent } from 'react';
 
 import './bottomSheet.scss';
@@ -57,13 +58,16 @@ const BottomSheetContainer: FunctionComponent = () => {
 
         <div className="item">
           <div className="item-title">구분</div>
-          <div className="category-box">
-            {categoryView &&
-              categoryFilterList.map((category) => (
-                <div key={category} onClick={handleCategoryItemClick}>
-                  {category}
-                </div>
-              ))}
+          <div
+            className={classNames('category-box', {
+              'category-box-hide': !categoryView,
+            })}
+          >
+            {categoryFilterList.map((category) => (
+              <div key={category} onClick={handleCategoryItemClick}>
+                {category}
+              </div>
+            ))}
           </div>
           <input
             className="item-input"
